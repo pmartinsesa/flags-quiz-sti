@@ -1,20 +1,29 @@
-import React from "react";
-
-import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { QuestionField } from "./components/Question/QuestionField";
+import { AnswerField } from "./components/Answer/AnswerField";
 
 import holanda from "./assets/flags/holanda.png";
+import { QuestionType } from "./types";
 
 import "./App.css";
 
+const QUESTIONS: Array<QuestionType> = [
+  {
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in est id ligula tristique facilisis ac eget dui. Donec eu dapibus dolor. In mollis lectus odio, eu rutrum lacus pellentesque et. Suspendisse sit amet augue non sem varius convallis non non sem. Nam mauris urna, scelerisque eu dapibus id, dictum eu eros. Morbi sed vulputate sapien. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut egestas lacus ut dapibus ullamcorper. Nullam ac nunc nisi. Quisque elementum id dolor eu eleifend. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    flag: holanda,
+    number: 1,
+    options: ["Espanha", "França", "Italia", "Holanda", "Luxemburgo"],
+    correctAnswer: "Holanda",
+    tips: [
+      "É um país da europa.",
+      "No passado invadiu o Brasil.",
+      "Terra das flores e dos moinhos de vento.",
+      "Seu idioma é o holandes.",
+    ],
+  },
+];
+
 function App() {
-  const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(false);
-
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    setError(false);
-  };
-
   return (
     <div className="App">
       <h1 style={{ marginLeft: "2rem" }}>
@@ -22,98 +31,26 @@ function App() {
       </h1>
       <div className="main-card">
         <div className="main-content">
-          <div className="question-header">
+          <div className="quiz-header">
             <h2 className="quiz-title">Qual a Bandeira?</h2>
-            <h4 className="quiz-subtitle">Responda a questão abaixo:</h4>
+            <h4 className="quiz-subtitle">Descubra a bandeira abaixo:</h4>
           </div>
 
-          <div className="question-structure">
-            <img src={holanda} alt="flag-question" />
-            <div className="question">
-              <h4 className="question-title">Questão 1/3</h4>
-              <span className="question-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                in est id ligula tristique facilisis ac eget dui. Donec eu
-                dapibus dolor. In mollis lectus odio, eu rutrum lacus
-                pellentesque et. Suspendisse sit amet augue non sem varius
-                convallis non non sem. Nam mauris urna, scelerisque eu dapibus
-                id, dictum eu eros. Morbi sed vulputate sapien. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur
-                ridiculus mus. Ut egestas lacus ut dapibus ullamcorper. Nullam
-                ac nunc nisi. Quisque elementum id dolor eu eleifend. Orci
-                varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus.
-              </span>
-            </div>
-          </div>
-
-          <div className="answer-structure">
-            <div>
-              <h4 className="answer-title">Escolha uma opção</h4>
-              <RadioGroup
-                aria-labelledby="demo-error-radios"
-                name="quiz"
-                value={value}
-                onChange={handleRadioChange}
-                sx={{ fontFamily: "Poppins" }}
-              >
-                <FormControlLabel
-                  value="holanda"
-                  control={<Radio />}
-                  label="Holanda"
-                />
-                <FormControlLabel
-                  value="luxemburgo"
-                  control={<Radio />}
-                  label="Luxemburgo"
-                />
-                <FormControlLabel
-                  value="espanha"
-                  control={<Radio />}
-                  label="Espanha"
-                />
-                <FormControlLabel
-                  value="alemanha"
-                  control={<Radio />}
-                  label="Alemanha"
-                />
-              </RadioGroup>
-            </div>
-            <div className="tips">
-              <h4 className="tips-title">Dicas</h4>
-              <li>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                in est id ligula tristique facilisis ac eget dui. Donec eu
-                dapibus dolor.
-              </li>
-              <li>
-                In mollis lectus odio, eu rutrum lacus pellentesque et.
-                Suspendisse sit amet augue non sem varius convallis non non sem.
-                Nam mauris urna, scelerisque eu dapibus id, dictum eu eros.
-              </li>
-              <li>
-                Morbi sed vulputate sapien. Orci varius natoque penatibus et
-                magnis dis parturient montes, nascetur ridiculus mus. Ut egestas
-                lacus ut dapibus ullamcorper. Nullam ac nunc nisi.
-              </li>
-            </div>
-          </div>
-          <div className="submit-answer">
-            <Button
-              sx={{ borderRadius: "30px", fontFamily: "Poppins" }}
-              type="submit"
-              variant="contained"
-              size="large"
-            >
-              Verificar Resposta
-            </Button>
-          </div>
+          <QuestionField
+            description={QUESTIONS[0].description}
+            flag={QUESTIONS[0].flag}
+            number={QUESTIONS[0].number}
+          />
+          <AnswerField
+            correctAnswer={QUESTIONS[0].correctAnswer}
+            options={QUESTIONS[0].options}
+            tips={QUESTIONS[0].tips}
+          />
         </div>
       </div>
 
       <footer>
-        {" "}
-        Feito com ❤️ por Pedro Flores, Pedro e Sá e Vinicius Pacheco.{" "}
+        Feito com ❤️ por Pedro Flores, Pedro e Sá e Vinicius Pacheco.
       </footer>
     </div>
   );

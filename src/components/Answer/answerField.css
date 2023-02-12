@@ -1,0 +1,45 @@
+.answer-structure {
+  display: flex;
+
+  align-items: space-between;
+  
+  margin-top: 1.5rem;
+}
+
+.answer-title {
+  color: #696F79;
+
+  width: 15rem;
+
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+
+  margin-bottom: 1.4rem;
+}
+
+.submit-answer {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 3rem;
+}
+
+.tips {
+  color: #696F79;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  margin-left: 15.5rem;
+}
+
+.tips-title {
+  color: #696F79;
+
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+
+  margin-bottom: 0.4rem;
+}
