@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router";
+
 import {
   Button,
   FormControl,
@@ -13,13 +15,17 @@ export type AnswerFieldProps = {
   options: Array<string>;
   correctAnswer: string;
   tips: Array<string>;
+  redirectTo: string;
 };
 
 export const AnswerField = ({
   options,
   correctAnswer,
   tips,
+  redirectTo,
 }: AnswerFieldProps) => {
+  const navigate = useNavigate();
+
   const [value, setValue] = React.useState("");
   const [errorCounter, setErrorCounter] = React.useState(0);
 
@@ -27,12 +33,14 @@ export const AnswerField = ({
     setValue((event.target as HTMLInputElement).value);
   };
 
+  //Usar useNavigate para redirecionar entre paginas....
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     if (value === correctAnswer) {
       alert("Acerto");
       setErrorCounter(0);
+
+      navigate(redirectTo);
     } else if (value !== correctAnswer && value.length > 0) {
       console.log("Sorry, wrong answer!");
       setErrorCounter(errorCounter + 1);
