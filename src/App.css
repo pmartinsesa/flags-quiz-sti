@@ -1,42 +1,133 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.main-card {
+  background: #FFFFFF;
+  box-shadow: 0px 15px 40px 5px #EDEDED;
+  border-radius: 30px;
+
+  margin: 2rem 1.5rem 1.5rem 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.main-content {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+
+  padding-top: 1.4rem;
+  padding-bottom: 2.1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.question-header {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.quiz-title {
+  color: #696F79;
+  font-weight: 700;
+
+  font-size: 33px;
+  line-height: 50px;
+
+  margin-bottom: 0.4rem;
 }
 
-.card {
-  padding: 2em;
+.quiz-subtitle {
+  color: #696F79;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+
+  margin-bottom: 1.4rem;
 }
 
-.read-the-docs {
-  color: #888;
+.question-structure {
+  display: flex;
+
+  align-items: top;
+  justify-content: space-between;
+}
+
+.question-structure > img {
+  width: 31.4rem;
+  height: 18.5rem;
+  left: 22.8rem;
+  top: 16.6rem;
+  box-shadow: 0px 15px 40px 5px #EDEDED;
+  border-radius: 30px;
+}
+
+.question {
+  margin-left: 2.8rem;
+}
+
+.question-title {
+  color: #696F79;
+
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+
+  margin-bottom: 1.5rem;
+}
+
+.question-description {
+  color: #696F79;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.answer-structure {
+  display: flex;
+
+  align-items: space-between;
+  
+  margin-top: 1.5rem;
+}
+
+.answer-title {
+  color: #696F79;
+
+  width: 15rem;
+
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+
+  margin-bottom: 1.4rem;
+}
+
+.submit-answer {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 3rem;
+}
+
+.tips {
+  color: #696F79;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  margin-left: 15.5rem;
+}
+
+.tips-title {
+  color: #696F79;
+
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+
+  margin-bottom: 0.4rem;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-right: 1.5rem;
 }
