@@ -11,19 +11,23 @@ import {
 
 import "./answerField.css";
 
+import { Expert } from "../../modules/Expert";
+import { Tutorial } from "../../modules/Tutorial";
+
 export type AnswerFieldProps = {
   options: Array<string>;
-  correctAnswer: string;
-  tips: Array<string>;
+  questionIndex: number;
+  expertModule: Expert;
   redirectTo: string;
 };
 
 export const AnswerField = ({
   options,
-  correctAnswer,
-  tips,
+  questionIndex,
+  expertModule,
   redirectTo,
 }: AnswerFieldProps) => {
+  const tutorialModule = new Tutorial();
   const navigate = useNavigate();
 
   const [value, setValue] = React.useState("");
@@ -36,12 +40,12 @@ export const AnswerField = ({
   //Usar useNavigate para redirecionar entre paginas....
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (value === correctAnswer) {
+    if (expertModule.isCorrectAnswer(value, questionIndex)) {
       alert("Acerto");
       setErrorCounter(0);
 
       navigate(redirectTo);
-    } else if (value !== correctAnswer && value.length > 0) {
+    } else if (!expertModule.isCorrectAnswer(value, questionIndex) && value.length > 0) {
       console.log("Sorry, wrong answer!");
       setErrorCounter(errorCounter + 1);
     } else {
@@ -87,7 +91,7 @@ export const AnswerField = ({
             ) : (
               <div className="tips">
                 <h4 className="tips-title">Dicas</h4>
-                {renderTips(tips)}
+                {renderTips(tutorialModule.getPersonalTipsToAQuestion(questionIndex))}
               </div>
             )}
           </div>
