@@ -6,7 +6,7 @@ export class Tutorial {
     this.expert = new Expert();
   } 
   
-  public getPersonalTipsToAQuestion(questionIndex) {
+  public getPersonalTipsToAQuestion(questionIndex: number) {
     const tips = this.expert.getTips(questionIndex);
 
     // Criar um algoritmo pra ordenar as dicas de acordo com o modulo do estudante...
