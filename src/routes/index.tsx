@@ -10,6 +10,9 @@ import { ForthQuestion } from "../pages/ForthQuestion";
 import { FifthQuestion } from "../pages/FifthQuestion";
 import { SixthQuestion } from "../pages/SixthQuestion";
 import { SeventhQuestion } from "../pages/SeventhQuestion";
+import { EighthQuestion } from "../pages/eighthQuestion";
+import { NinthQuestion } from "../pages/NinthQuestion";
+import { TenthQuestion } from "../pages/TenthQuestion";
 
 export const AplicationRoutes = () => {
   const navigate = useNavigate();
@@ -49,6 +52,18 @@ export const AplicationRoutes = () => {
       <Route
         path="/seventh-question"
         element={<SeventhQuestion expertModule={expertModule} />}
+      />
+      <Route
+        path="/eighth-question"
+        element={<EighthQuestion expertModule={expertModule} />}
+      />
+      <Route
+        path="/ninth-question"
+        element={<NinthQuestion expertModule={expertModule} />}
+      />
+      <Route
+        path="/tenth-question"
+        element={<TenthQuestion expertModule={expertModule} />}
       />
     </Routes>
   );

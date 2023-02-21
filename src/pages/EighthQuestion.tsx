@@ -8,8 +8,8 @@ export type QuestionInterfaceProps = {
   expertModule: Expert;
 };
 
-export const SeventhQuestion = ({ expertModule }: QuestionInterfaceProps) => {
-  const question = expertModule.getQuestionFields(6);
+export const EighthQuestion = ({ expertModule }: QuestionInterfaceProps) => {
+  const question = expertModule.getQuestionFields(7);
 
   return (
     <>
@@ -17,8 +17,8 @@ export const SeventhQuestion = ({ expertModule }: QuestionInterfaceProps) => {
       <AnswerField
         options={question.options}
         expertModule={expertModule}
-        questionIndex={6}
-        redirectTo="/eighth-question"
+        questionIndex={7}
+        redirectTo="/ninth-question"
       />
     </>
   );
