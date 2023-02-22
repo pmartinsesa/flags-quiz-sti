@@ -3,12 +3,14 @@ import React from "react";
 import { AnswerField } from "../components/Answer/AnswerField";
 import { QuestionField } from "../components/Question/QuestionField";
 import { Expert } from "../modules/Expert";
+import { Student } from "../modules/Student";
 
 export type QuestionInterfaceProps = {
   expertModule: Expert;
+  studentModule: Student;
 };
 
-export const NinthQuestion = ({ expertModule }: QuestionInterfaceProps) => {
+export const NinthQuestion = ({ expertModule, studentModule }: QuestionInterfaceProps) => {
   const question = expertModule.getQuestionFields(8);
 
   return (
@@ -17,6 +19,7 @@ export const NinthQuestion = ({ expertModule }: QuestionInterfaceProps) => {
       <AnswerField
         options={question.options}
         expertModule={expertModule}
+        studentModule={studentModule}
         questionIndex={8}
         redirectTo="/tenth-question"
       />

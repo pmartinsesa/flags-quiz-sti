@@ -4,12 +4,14 @@ import { AnswerField } from "../components/Answer/AnswerField";
 import { QuestionField } from "../components/Question/QuestionField";
 
 import { Expert } from "../modules/Expert";
+import { Student } from "../modules/Student";
 
 export type QuestionInterfaceProps = {
   expertModule: Expert;
+  studentModule: Student;
 };
 
-export const SecondQuestion = ({ expertModule }: QuestionInterfaceProps) => {
+export const SecondQuestion = ({ expertModule, studentModule }: QuestionInterfaceProps) => {
   const question = expertModule.getQuestionFields(1);
 
   return (
@@ -18,6 +20,7 @@ export const SecondQuestion = ({ expertModule }: QuestionInterfaceProps) => {
       <AnswerField
         options={question.options}
         expertModule={expertModule}
+        studentModule={studentModule}
         questionIndex={1}
         redirectTo="/third-question"
       />
