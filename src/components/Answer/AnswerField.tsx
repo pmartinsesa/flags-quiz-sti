@@ -2,9 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 import {
+  Box,
   Button,
   FormControl,
   FormControlLabel,
+  Modal,
   Radio,
   RadioGroup,
 } from "@mui/material";
@@ -12,19 +14,36 @@ import {
 import "./answerField.css";
 
 import { Expert } from "../../modules/Expert";
+import { Student } from "../../modules/Student";
 import { Tutorial } from "../../modules/Tutorial";
 
 export type AnswerFieldProps = {
   options: Array<string>;
   questionIndex: number;
   expertModule: Expert;
+  studentModule: Student;
   redirectTo: string;
+};
+
+const modalStyle = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
 };
 
 export const AnswerField = ({
   options,
   questionIndex,
   expertModule,
+  studentModule,
   redirectTo,
 }: AnswerFieldProps) => {
   const tutorialModule = new Tutorial();
@@ -32,24 +51,42 @@ export const AnswerField = ({
 
   const [value, setValue] = React.useState("");
   const [errorCounter, setErrorCounter] = React.useState(0);
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const handleClose = () => {
+    setOpenModal(false);
+    if (isLastQuestion(questionIndex)) {
+      studentModule.resetConsectiveRightQuestions();
+    }
+
+    if (
+      tutorialModule.hasRightTwoQuestionsInRow(
+        studentModule.getConsectiveRightQuestions()
+      )
+    ) {
+      const newRedirect = tutorialModule.skipNextQuestion(questionIndex);
+      navigate(newRedirect);
+    } else {
+      navigate(redirectTo);
+    }
+  };
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
-  //Usar useNavigate para redirecionar entre paginas....
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (expertModule.isCorrectAnswer(value, questionIndex)) {
-      alert("Acerto");
       setErrorCounter(0);
-
-      navigate(redirectTo);
-    } else if (!expertModule.isCorrectAnswer(value, questionIndex) && value.length > 0) {
-      console.log("Sorry, wrong answer!");
+      studentModule.incrementConsectiveRightQuestions();
+      setOpenModal(true);
+    } else if (
+      !expertModule.isCorrectAnswer(value, questionIndex) &&
+      value.length > 0
+    ) {
       setErrorCounter(errorCounter + 1);
-    } else {
-      console.log("Please select an option.");
+      studentModule.resetConsectiveRightQuestions();
     }
   };
 
@@ -68,6 +105,10 @@ export const AnswerField = ({
     const tipsToShow = tips.slice(0, errorCounter);
 
     return tipsToShow.map((tip) => <li>{tip}</li>);
+  };
+
+  const isLastQuestion = (questionIndex: number) => {
+    return questionIndex === 9;
   };
 
   return (
@@ -91,7 +132,9 @@ export const AnswerField = ({
             ) : (
               <div className="tips">
                 <h4 className="tips-title">Dicas</h4>
-                {renderTips(tutorialModule.getPersonalTipsToAQuestion(questionIndex))}
+                {renderTips(
+                  tutorialModule.getPersonalTipsToAQuestion(questionIndex)
+                )}
               </div>
             )}
           </div>
@@ -107,6 +150,31 @@ export const AnswerField = ({
           </Button>
         </div>
       </form>
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={{ ...modalStyle, width: 300 }}>
+          <h2 id="child-modal-title">Parabéns</h2>
+          <p style={{ marginTop: "0.5rem" }} id="child-modal-description">
+            {isLastQuestion(questionIndex)
+              ? "Você finalizou o quiz."
+              : "Você acertou a bandeira."}
+          </p>
+          <Button
+            style={{ marginTop: "1.5rem" }}
+            variant="contained"
+            color="success"
+            onClick={handleClose}
+          >
+            {isLastQuestion(questionIndex)
+              ? "Voltar ao inicio"
+              : "Próxima Pergunta"}
+          </Button>
+        </Box>
+      </Modal>
     </>
   );
 };

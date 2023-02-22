@@ -1,4 +1,19 @@
 export class Student {
-  // Criar um sistema de levantamento de dados do aluno.
-  // Com base nesses dados vamos criar algum algoritmo no modelo tutorial para ordenação das dicas.
+  private consectiveRightQuestions: number;
+
+  constructor() {
+    this.consectiveRightQuestions = 0;
+  }
+
+  public getConsectiveRightQuestions(): number {
+    return this.consectiveRightQuestions;
+  }
+
+  public incrementConsectiveRightQuestions(): void {
+    ++this.consectiveRightQuestions;
+  }
+
+  public resetConsectiveRightQuestions(): void {
+    this.consectiveRightQuestions = 0;
+  }
 }
