@@ -22,6 +22,7 @@ export type AnswerFieldProps = {
   questionIndex: number;
   expertModule: Expert;
   studentModule: Student;
+  tutorialModule: Tutorial;
   redirectTo: string;
 };
 
@@ -44,9 +45,9 @@ export const AnswerField = ({
   questionIndex,
   expertModule,
   studentModule,
+  tutorialModule,
   redirectTo,
 }: AnswerFieldProps) => {
-  const tutorialModule = new Tutorial();
   const navigate = useNavigate();
 
   const [value, setValue] = React.useState("");
@@ -59,6 +60,12 @@ export const AnswerField = ({
       studentModule.resetConsectiveRightQuestions();
     }
 
+    if (questionIndex == 10) {
+      tutorialModule.currentEasyQuestion = false
+      navigate(redirectTo)
+      return;
+    }
+
     if (
       tutorialModule.hasRightTwoQuestionsInRow(
         studentModule.getConsectiveRightQuestions()
@@ -66,9 +73,22 @@ export const AnswerField = ({
     ) {
       const newRedirect = tutorialModule.skipNextQuestion(questionIndex);
       navigate(newRedirect);
-    } else {
-      navigate(redirectTo);
+      return;
     }
+
+    if (
+      tutorialModule.hasTwoVeryWrongQuestionsInRow(
+        studentModule.getConsectiveVeryWrongQuestions()
+      ) && !tutorialModule.hasShownEasyQuestion()
+    ) {
+      tutorialModule.currentEasyQuestion = true
+      const newRedirect = tutorialModule.goToEasyQuestion(questionIndex);
+      studentModule.resetConsectiveVeryWrongQuestions()
+      navigate(newRedirect);
+      return;
+    }
+
+    navigate(redirectTo);
   };
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +98,11 @@ export const AnswerField = ({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (expertModule.isCorrectAnswer(value, questionIndex)) {
+      if (errorCounter >= 3) {
+        studentModule.incrementConsectiveVeryWrongQuestions()
+      } else {
+        studentModule.resetConsectiveVeryWrongQuestions()
+      }
       setErrorCounter(0);
       studentModule.incrementConsectiveRightQuestions();
       setOpenModal(true);
