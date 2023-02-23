@@ -25,14 +25,14 @@ export const Questions: Array<ExpertType> = [
     ],
   },
   {
-    flag: finlandia,
-    options: ["Noruega", "Dinamarca", "Suécia", "Suiça", "Finlândia"],
-    correctAnswer: "Finlândia",
+    flag: argentina,
+    options: ["Uruguai", "Peru", "Reino Unido", "Argentina", "Patagônia"],
+    correctAnswer: "Argentina",
     tips: [
-      "Ganhou sua independência da Russia.",
-      "Único país nórdico que não pertence a Escandinávia.",
-      "Fala um idioma muito diferente de seus vizinhos.",
-      "Sua capital é Helsinki.",
+      "Perdeu para a Arábia Saudita na Copa do Mundo.",
+      "Tem mais vacas que pessoas.",
+      "Fica próximo ao Ria da Prata.",
+      "Famosos pelo seu alfajor.",
     ],
   },
   {
@@ -44,6 +44,34 @@ export const Questions: Array<ExpertType> = [
       "Grande rival dos Estados Unidos.",
       "Tem a maior população do planeta.",
       "Sua grande atração turística é a Grande Muralha.",
+    ],
+  },
+  {
+    flag: cuba,
+    options: [
+      "Republica Dominicana",
+      "Costa Rica",
+      "Ilhas Fiji",
+      "Cuba",
+      "Guatemala",
+    ],
+    correctAnswer: "Cuba",
+    tips: [
+      "O seu idioma oficial é o espanhol.",
+      "Conhecida no passsado pela pirataria.",
+      "Abriga um dos maiores presidios do mundo em sua ilha.",
+      "País importante na Guerra Fria.",
+    ],
+  },
+  {
+    flag: finlandia,
+    options: ["Noruega", "Dinamarca", "Suécia", "Suiça", "Finlândia"],
+    correctAnswer: "Finlândia",
+    tips: [
+      "Ganhou sua independência da Russia.",
+      "Único país nórdico que não pertence a Escandinávia.",
+      "Fala um idioma muito diferente de seus vizinhos.",
+      "Sua capital é Helsinki.",
     ],
   },
   {
@@ -61,6 +89,23 @@ export const Questions: Array<ExpertType> = [
       "Sua população de ovelhas é maior que de pessoas.",
       "Seu povo indígina mais famoso são os Maori.",
       "Faz parte da Oceânia.",
+    ],
+  },
+  {
+    flag: eslovenia,
+    options: [
+      "Eslováquia",
+      "Sérvia",
+      "Eslovênia",
+      "Húngria",
+      "Bosnia e Herzegovina",
+    ],
+    correctAnswer: "Eslovênia",
+    tips: [
+      "Recebou sua independência da Iugoslávia.",
+      "Sua capital Liubliana.",
+      "Faz parte da União Europeia.",
+      "Sua população é praticamente equivalente a população de Curitiba.",
     ],
   },
   {
@@ -98,17 +143,6 @@ export const Questions: Array<ExpertType> = [
     ],
   },
   {
-    flag: argentina,
-    options: ["Uruguai", "Peru", "Reino Unido", "Argentina", "Patagônia"],
-    correctAnswer: "Argentina",
-    tips: [
-      "Perdeu para a Arábia Saudita na Copa do Mundo.",
-      "Tem mais vacas que pessoas.",
-      "Fica próximo ao Ria da Prata.",
-      "Famosos pelo seu alfajor.",
-    ],
-  },
-  {
     flag: micronesia,
     options: ["Micronésia", "Ilhas Aland", "Somália", "Sérvia", "Níger"],
     correctAnswer: "Micronésia",
@@ -117,40 +151,6 @@ export const Questions: Array<ExpertType> = [
       "Um país formado por mais de 600 ilhas.",
       "Abriga um dos maiores carangueijos do mundo: carangueijo-dos-coqueiros.",
       "Um dos 22 países do mundo que não possuí exercito próprio.",
-    ],
-  },
-  {
-    flag: eslovenia,
-    options: [
-      "Eslováquia",
-      "Sérvia",
-      "Eslovênia",
-      "Húngria",
-      "Bosnia e Herzegovina",
-    ],
-    correctAnswer: "Eslovênia",
-    tips: [
-      "Recebou sua independência da Iugoslávia.",
-      "Sua capital Liubliana.",
-      "Faz parte da União Europeia.",
-      "Sua população é praticamente equivalente a população de Curitiba.",
-    ],
-  },
-  {
-    flag: cuba,
-    options: [
-      "Republica Dominicana",
-      "Costa Rica",
-      "Ilhas Fiji",
-      "Cuba",
-      "Guatemala",
-    ],
-    correctAnswer: "Cuba",
-    tips: [
-      "O seu idioma oficial é o espanhol.",
-      "Conhecida no passsado pela pirataria.",
-      "Abriga um dos maiores presidios do mundo em sua ilha.",
-      "País importante na Guerra Fria.",
     ],
   },
   {
